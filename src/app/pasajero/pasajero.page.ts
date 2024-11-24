@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
+import { MenuController } from '@ionic/angular';
 
 import {car,albums,home,logOut, man} from 'ionicons/icons'
 
@@ -17,7 +18,7 @@ import {car,albums,home,logOut, man} from 'ionicons/icons'
 export class PasajeroPage  {
   
 
-  constructor(private router:Router) { 
+  constructor(private router:Router,private menuCtrl: MenuController) { 
     addIcons({car,albums,home,logOut,man
     })
 
@@ -28,6 +29,10 @@ export class PasajeroPage  {
 
   irviajes(){
     this.router.navigate(['buscar-viaje']);
+  }
+
+  openMenu() {
+    this.menuCtrl.open('main-menu'); // Identificador del menú (por defecto "first")
   }
 
   

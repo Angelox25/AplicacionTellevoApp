@@ -33,8 +33,10 @@
     
 }
 
-.logo{
-  border-radius: 30px;
+.logo {
+  max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+  height: auto; /* Mantiene la proporción */
+  border-radius: 15px;
 }
 
 .modosc{
@@ -86,20 +88,17 @@ margin: auto;  border-radius: 15px;
 //     font-size: 30px;
 // }
 
-.login{
+.login {
   border: 1px solid rgb(226, 85, 85);
-  width: 550px;
-  height: 590px;
+  width: 90%; /* Cambia a un ancho relativo */
+  max-width: 400px; /* Establece un ancho máximo para pantallas grandes */
+  height: auto; /* Permite que la altura se ajuste automáticamente */
+  padding: 20px;
   background: rgb(221, 108, 108);
   color: white;
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(120, 100, 100, 0.75);
-  // background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  margin: auto;
-  margin-bottom: 20px;
-  
+  margin: 20px auto; /* Centra el contenedor horizontalmente */
 }
 
 form{
