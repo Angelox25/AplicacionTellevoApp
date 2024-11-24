@@ -35,3 +35,36 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+  ion-button{
+    color: white;
+    --ion-color: #ff443a; 
+    width: 200px; 
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    --border-radius: 50px !important; 
+  }
+  
+  :root {
+    --ion-background-color: #ffffff;
+    --ion-text-color: #000000;
+  }
+  
+  [data-theme='dark'] {
+    --ion-background-color: #000000;
+    --ion-text-color: #ffffff;
+  }
+
+
+ 
+  
+  
+
+
+  
+
+  
+
+  

@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio de Sesión</ion-title>
+    <ion-button class="custom-button" slot="end" (click)="toggleDarkMode()">
+      <img class="modosc" src="assets/icon/modosc.png" alt="Toggle Dark Mode">
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Contenedor logo -->
+  <div class="logo-container">
+    <img #logo src="assets/icon/icontellevo.png" alt="TeLlevoAPP Logo" class="logo" />
+  </div>
+
+  <!-- Inicio del login -->
+  <div class="login">
+    <h1>INICIE SESIÓN</h1>
+    <!-- Formulario de inicio de sesión -->
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <!-- Campo de Nombre de Usuario -->
+      <ion-item>
+        <ion-input formControlName="username" placeholder="Ingrese usuario" maxlength="8"></ion-input>
+      </ion-item>
+      <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error-message">
+        <span *ngIf="loginForm.get('username')?.errors?.['required']" style="color: red;">
+          Debe ingresar usuario
+        </span>
+      </div>
+
+      <!-- Campo de contraseña -->
+      <ion-item>
+        <div class="input-group">
+          <ion-input formControlName="password" id="password" type="password" placeholder="****" maxlength="4"></ion-input>
+          <button type="button" class="show-password-button" (click)="togglePasswordVisibility('password')">👁️</button>
+        </div>
+      </ion-item>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+        <span *ngIf="loginForm.get('password')?.errors?.['required']" style="color: red;">
+          Debe ingresar contraseña
+        </span>
+      </div>
+
+      <!-- Opciones de recuperación y creación de cuenta -->
+      <a (click)="onForgotPassword()">¿Olvidaste tu contraseña?</a>
+      <a (click)="onCreateAccount()">¿Crear cuenta?</a>
+
+      <!-- Botón de ingresar -->
+      <ion-button expand="block" type="submit" [disabled]="!loginForm.valid">INGRESAR</ion-button>
+    </form>
+  </div>
+
+  <!-- Información de depuración (opcional para desarrollo) -->
+  <h1> Variables de Grupo</h1>
+  <ion-item>
+    <ion-label> {{ loginForm.value | json }}</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label> Es válido el formulario: {{ loginForm.valid }}</ion-label>
+  </ion-item>
+</ion-content>

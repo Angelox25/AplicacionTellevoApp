@@ -1,20 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="logo-container">
+    <img #logo2 src="assets/icon/icontellevo.png" alt="TeLlevoAPP Logo" class="logo2" />
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
+  
+  <ion-card>
+      
+    <ion-title #text> <strong>Bienvenid&#64;, {{username}}
+    <br>
+    ¿Qué deseas hacer hoy?</strong>
+    </ion-title>
+    <ion-button (click)="Chofer()">Quiero llevar pasajeros</ion-button>
+    <ion-button (click)="Pasajero()">Quiero tomar un viaje</ion-button> 
+
+    <div>
+      <img src="assets/icon/peoples.png" alt="personas">
+    </div>
+
+
+    <ion-button (click)="cerrarSesion()">CERRAR SESION</ion-button> 
+
+    
+  </ion-card>
 </ion-content>

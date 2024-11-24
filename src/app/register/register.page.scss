@@ -1,0 +1,84 @@
+div{
+    text-align: center;
+    padding:50px;
+    margin: auto;
+    border-radius: 15px;   
+}
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --input-background: #d3d3d3;
+    --button-background: #ff0000;
+  }
+  
+  [data-theme='dark'] {
+    --background-color: #1e1e1e;
+    --text-color: #ffffff;
+    --input-background: #3a3a3a;
+    --button-background: #e63946;
+  }
+
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    
+    
+  }
+  
+  .logo {
+    width: 150px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 25px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .required {
+    color: red;
+  }
+  
+  .input-field {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    background-color: #d3d3d3;
+    --padding-start: 15px;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+  }
+  
+  .buttoncontinuar {
+    color: #ffffff;
+    --border-radius: 50px;
+    margin-top: 20px;
+    --background:#ff443a;
+  }
+
+ion-button{
+  display: flex;
+  justify-content: center;
+  --background:#ff443a;
+}
+
+.ion-text{
+  text-align: center;
+} 
+
+  

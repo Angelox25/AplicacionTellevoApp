@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title class="logo-title">
+      <img src="assets/icon/icontellevo.png" alt="Logo Chofer" class="logo-img">
+      CHOFER
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="welcome-container">
+    <h2>BIENVENIDO {{username}} </h2>
+    <p>Ingresa un nuevo viaje:</p>
+
+    
+    <ion-item>
+      <ion-label position="stacked">DESTINO</ion-label>
+      <input class="wena" type="text" id="autocomplete" [(ngModel)]="destino" >
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">CAPACIDAD</ion-label>
+      <ion-select placeholder="Seleccione una opción"  [(ngModel)]="capacidad" >
+        <ion-select-option value="1">1 Pasajero</ion-select-option>
+        <ion-select-option value="2">2 Pasajeros</ion-select-option>
+        <ion-select-option value="3">3 Pasajeros</ion-select-option>
+        <ion-select-option value="4">4 Pasajeros</ion-select-option>
+
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">COSTO POR VIAJERO</ion-label>
+      <ion-select placeholder="Seleccione un monto"  [(ngModel)]="costoPasajero" >
+        <ion-select-option value="1000">$1.000</ion-select-option>
+        <ion-select-option value="1500">$1.500</ion-select-option>
+        <ion-select-option value="2000">$2.000</ion-select-option>
+        <ion-select-option value="2500">$2.500</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">HORA DE SALIDA</ion-label>
+      <ion-input type="time" placeholder="HH:mm"  [(ngModel)]="horaSalida" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha de programación</ion-label>
+      <ion-input type="date" placeholder="DD-MM-YYYY"  [(ngModel)]="programacion" ></ion-input>
+    </ion-item>
+  </div>
+  <ion-button expand="block" (click)="calculaRuta()">Indicaciones del trayecto</ion-button> 
+
+
+<div class="map-container">
+  <div id="map" ></div>  
+</div >    
+    <div id="trayecto"></div>
+  <div>
+    <ion-button expand="block" color="danger" class="continue-button"(click)="agregarViaje()">CREAR VIAJE</ion-button>
+
+    <ion-button type="button" class="continue-button" (click)="irChofer()">Volver</ion-button>
+
+  </div> 
+  
+ 
+    
+
+
+
+</ion-content>
+
+
+

@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>buscarViaje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div>
+    <ion-button (click)="listar()">Mostrar Viajes</ion-button>
+  </div>
+  
+  <div class="tablalistado">
+    <table class="viajes-creados">
+      <thead>
+        <tr>
+          <th>Destino</th>
+          <th>Capacidad</th>
+          <th>Costo por pasajero</th>
+          <th>Hora de salida</th>
+          <th>Fecha de recorrido</th>
+          <th>Confirmar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let viaje of viajes">
+          <td>{{viaje.destino}}</td>
+          <td>{{viaje.capacidad}}</td>
+          <td>${{viaje.costoPasajero}}</td>
+          <td>{{viaje.horaSalida}}</td>
+          <td>{{viaje.programacion}}</td>
+          <td>
+            <ion-button (click)="buscar(viaje.identificador)">Mas Informacion</ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+ <!-- Detalles del viaje seleccionado -->
+ <div *ngIf="currentId" class="input-container">
+  <ion-item>
+    <ion-label position="stacked">Destino</ion-label>
+    <ion-input type="text" [(ngModel)]="destino" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Capacidad Disponible</ion-label>
+    <ion-input type="number" [(ngModel)]="capacidad" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Costo por Viajero</ion-label>
+    <ion-input type="number" [(ngModel)]="costoPasajero" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Hora de Salida</ion-label>
+    <ion-input type="time" [(ngModel)]="horaSalida" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Fecha de Programación</ion-label>
+    <ion-input type="date" [(ngModel)]="programacion" disabled></ion-input>
+  </ion-item>
+
+  <!-- Campo para seleccionar la cantidad de asientos -->
+  <ion-item>
+    <ion-label position="stacked">Cantidad de Asientos a Reservar</ion-label>
+    <ion-input type="number" [(ngModel)]="asientosReservados" min="1" max="{{capacidad}}"></ion-input>
+  </ion-item>
+
+  <!-- Botón para reservar asientos -->
+  <ion-button expand="block" (click)="reservarAsientos()">Reservar Asientos</ion-button>
+</div>
+
+<!-- Detalles del viaje y el mapa -->
+<div *ngIf="currentId" class="input-container">
+  <ion-item>
+    <ion-label position="stacked">Destino</ion-label>
+    <ion-input type="text" [(ngModel)]="destino" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Capacidad Disponible</ion-label>
+    <ion-input type="number" [(ngModel)]="capacidad" disabled></ion-input>
+  </ion-item>
+
+  <!-- Botón para mostrar la ruta en el mapa -->
+  <ion-button expand="block" (click)="mostrarRuta()">Mostrar Ruta</ion-button>
+</div>
+
+  <!-- Información de la reserva -->
+  <div *ngIf="asientosReservados > 0" class="reserva-detalles">
+    <h2>Detalles de la Reserva</h2>
+    <p>Asientos reservados: {{ asientosReservados }}</p>
+    <p>Total a pagar: ${{ costoPasajero * asientosReservados }}</p>
+  </div>
+
+<!-- Contenedor del mapa -->
+ <div class="map-container">
+<div id="map" style="height: 400px;" ></div>
+ </div>
+
+</ion-content>

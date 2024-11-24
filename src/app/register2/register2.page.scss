@@ -1,0 +1,88 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .logo {
+    width: 150px;
+    margin-bottom: 10px;
+  }
+  
+  .back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 14px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .required {
+    color: red;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #d3d3d3;
+    border-radius: 15px;
+    padding: 5px 10px;
+    width: 100%;
+  }
+  
+  .input-field {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 8px;
+  }
+  
+  .status-icon {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+  
+  .show-password-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .register-button {
+    background-color: #ff4c4c;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  ion-button{
+    display: flex;
+    justify-content: center;
+    --background:#ff443a;
+  }

@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro de usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="register-container">
+    <img src="assets/icon/icontellevo.png" alt="TeLlevoApp Logo" class="logo">
+    <h1>REGISTRAR</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="continuarRegistro()">
+      <label for="nombre">Nombre <span class="required">*</span></label>
+      <ion-input formControlName="nombre" type="text" id="nombre" placeholder="Ingrese nombre" class="input-field"></ion-input>
+      <ion-text color="danger" *ngIf="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched">
+        Nombre es requerido y debe contener solo letras.
+      </ion-text>
+      <br>
+
+      <label for="apellidos">Apellidos <span class="required">*</span></label>
+      <ion-input formControlName="apellidos" type="text" id="apellidos" placeholder="Ingrese apellido" class="input-field"></ion-input>
+      <ion-text color="danger" *ngIf="registerForm.get('apellidos')?.invalid && registerForm.get('apellidos')?.touched">
+        Apellidos son requeridos y deben contener solo letras.
+      </ion-text>
+      <br>
+      <label for="rut">Rut <span class="required">*</span></label>
+      <ion-input formControlName="rut" type="text" id="rut" placeholder="11.111.111-1" maxlength="10" class="input-field"></ion-input>
+      <ion-text color="danger" *ngIf="registerForm.get('rut')?.invalid && registerForm.get('rut')?.touched">
+        Rut es requerido y debe tener un formato válido.
+      </ion-text>
+      <br>
+      <label for="correo">Correo institucional <span class="required">*</span></label>
+      <ion-input formControlName="correo" type="email" id="correo" placeholder="correo@duocuc.cl" class="input-field"></ion-input>
+      <ion-text color="danger" *ngIf="registerForm.get('correo')?.invalid && registerForm.get('correo')?.touched">
+        Correo es requerido y debe ser un correo válido.
+      </ion-text>
+      <br>
+      <label for="telefono">Teléfono <span class="required">*</span></label>
+      <ion-input formControlName="telefono" type="tel" id="telefono" placeholder="569 1111 1111" maxlength="11" class="input-field"></ion-input>
+      <ion-text color="danger" *ngIf="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched">
+        Teléfono es requerido y debe ser un número válido.
+      </ion-text>
+
+      <br>
+      <ion-checkbox [(ngModel)]="hasLicense" name="licencia-check" id="licencia-check" [ngModelOptions]="{standalone: true}">¿Tiene licencia de conducir?</ion-checkbox>
+
+      <input type="file" id="licencia" class="input-field" [disabled]="!hasLicense" />
+
+      <ion-button [disabled]="registerForm.invalid" expand="block" class="buttoncontinuar" type="submit">CONTINUAR</ion-button>
+
+      <ion-button type="button" (click)="volverInicio()">Volver</ion-button>
+    </form>
+  </div>
+  
+
+  
+
+
+
+
+
+ 
+
+
+
+
+
+
+  <!-- <div>
+    <ion-button (click)="volverInicio()">
+      volver
+    </ion-button>
+  </div> -->
+
+
+</ion-content>
+
+

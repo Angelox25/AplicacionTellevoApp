@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro de usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="register-container">
+    <img src="assets/icon/icontellevo.png" alt="TeLlevoApp Logo" class="logo">
+    <h1>REGISTRAR</h1>
+    <form (ngSubmit)="registrarUsuario()">
+      <label for="username">Nombre de usuario <span class="required">*</span></label>
+      <div class="input-group">
+        <input type="text" [(ngModel)]="username" name="username" id="username" placeholder="Nombre usuario" class="input-field" required>
+        <span class="status-icon">&#9989;</span> <!-- Icono de verificación -->
+      </div>
+
+      <ion-label for="password">Contraseña <span class="required">*</span></ion-label>
+      <div class="input-group">
+        <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="1234" class="input-field" required>
+        <button type="button" class="show-password-button" (click)="togglePasswordVisibility('password')">👁️</button> <!-- Botón de mostrar contraseña -->
+      </div>
+
+      <ion-label for="repeat-password">Repetir contraseña <span class="required">*</span></ion-label>
+      <div class="input-group">
+        <input type="password" [(ngModel)]="repeatPassword" name="repeatPassword" id="repeatPassword" placeholder="1234" class="input-field" required>
+        <button type="button" class="show-password-button" (click)="togglePasswordVisibility('repeatPassword')">👁️</button> <!-- Botón de mostrar contraseña -->
+      </div>
+
+      <ion-button type="submit" class="register-button" (click)="mostrarMensajeRegistro2()">REGISTRAR</ion-button>
+      <ion-button (click)="volverInicio()">Volver</ion-button>
+    </form>
+  </div>
+</ion-content>

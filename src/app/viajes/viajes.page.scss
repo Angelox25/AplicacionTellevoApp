@@ -1,0 +1,84 @@
+.viajes-creados {
+    border-collapse: collapse;
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    min-width: 300px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .viajes-creados thead tr {
+    background-color: #ff443a;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .viajes-creados th,
+  .viajes-creados td {
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 15px;
+  }
+  
+  .viajes-creados tbody tr {
+    border-bottom: 2px solid #dddddd;
+  
+  }
+  
+  .viajes-creados tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .viajes-creados tbody tr:last-of-type {
+    border-bottom: 2px solid #ff443a;
+  }
+  
+  .viajes-creados tbody tr.active-row {
+    font-weight: bold;
+    color: #ff443a;
+  }
+  h3{
+    text-align: center;
+    font-size: 50px;
+
+    
+  }
+
+  ion-button{
+    display: flex;
+    justify-content: center;
+    --background:#ff443a;
+    width: 100px;
+  }
+  .butlistar{
+    width: 200px;
+    height: 100px;
+    display: block;
+    font-size: 20px;
+
+  }
+h2{
+  text-align: center;
+  margin-top: 35px;
+  font-size: 50px;
+}
+.Contenedor{
+  text-align: center;
+  margin: auto;
+}
+ion-item{
+  width: 500px;
+  margin: auto;
+  font-size: 20px;
+  border: 1px solid rgb(93, 83, 83);
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+
+
+ 
