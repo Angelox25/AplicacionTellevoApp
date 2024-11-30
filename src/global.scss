@@ -48,14 +48,22 @@
   }
   
   :root {
-    --ion-background-color: #ffffff;
-    --ion-text-color: #000000;
+    --ion-text-color: #000000; /* Color de texto por defecto (modo claro) */
   }
   
   [data-theme='dark'] {
-    --ion-background-color: #000000;
-    --ion-text-color: #ffffff;
+    --ion-text-color: #ffffff; /* Color de texto para modo oscuro */
+    --ion-input-color: #ffffff; /* Color de texto dentro de los inputs */
+    --ion-input-placeholder-color: #cccccc; /* Color del placeholder */
+    --ion-background-color: #222222; /* Fondo del modo oscuro */
+    ion-input {
+      --placeholder-color: #ffffff; /* Placeholder blanco en modo oscuro */
+      color: #ffffff; /* Texto blanco en modo oscuro */
+    }
   }
+
+
+
 
 
  

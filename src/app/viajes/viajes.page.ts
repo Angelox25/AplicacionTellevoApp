@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { StorageService } from '../storage.service';
+import { Router } from '@angular/router';
+
 
 interface Viaje {
   destino: string;
@@ -12,7 +14,6 @@ interface Viaje {
   programacion: string;
   identificador: string;
 }
-
 
 @Component({
   selector: 'app-viajes',
@@ -31,7 +32,11 @@ export class ViajesPage implements OnInit {
   programacion:string=""; 
   currentId: string=""; 
 
-  constructor(private storageservice: StorageService) { }
+  constructor(private storageservice: StorageService,
+    private router:Router
+  ) { 
+    
+    }
 
   async  ngOnInit() {
 
@@ -82,6 +87,11 @@ async buscar(id:any){
   }
 
 } 
+
+volverChofer(){
+  this.router.navigate(['chofer']);
+
+}
   
 
 

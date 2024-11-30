@@ -17,6 +17,7 @@ div{
     --text-color: #ffffff;
     --input-background: #3a3a3a;
     --button-background: #e63946;
+    
   }
 
 
@@ -32,11 +33,16 @@ div{
     
   }
   
-  .logo {
-    width: 150px;
-    margin-bottom: 20px;
-    border-radius: 30px;
-  }
+  .logo{
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.logo-container{
+    text-align: center;
+    padding:50px;
+}
   
   h1 {
     font-size: 24px;
@@ -71,14 +77,28 @@ div{
     --background:#ff443a;
   }
 
-ion-button{
-  display: flex;
-  justify-content: center;
-  --background:#ff443a;
-}
 
 .ion-text{
   text-align: center;
 } 
+ion-input {
+  --placeholder-color: black; /* Placeholder blanco en modo oscuro */
+}
 
-  
+
+ion-button{
+
+  color: white;  
+  --ion-color-primary: #ff443a;
+  width: 200px; 
+  height: 100px;
+  font-size: 20px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+ion-checkbox{
+  --border-color: white !important;
+}

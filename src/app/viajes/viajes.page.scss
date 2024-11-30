@@ -1,46 +1,27 @@
+.table-container {
+  width: 100%; /* Se ajusta al ancho del contenedor */
+  overflow-x: auto; /* Permite el desplazamiento horizontal */
+  white-space: nowrap; /* Evita que las celdas se ajusten en líneas múltiples */
+}
+
 .viajes-creados {
-    border-collapse: collapse;
-    margin: auto;
-    margin-bottom: 10px;
-    font-size: 0.9em;
-    min-width: 300px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .viajes-creados thead tr {
-    background-color: #ff443a;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .viajes-creados th,
-  .viajes-creados td {
-    padding: 12px 15px;
-    text-align: center;
-    font-size: 15px;
-  }
-  
-  .viajes-creados tbody tr {
-    border-bottom: 2px solid #dddddd;
-  
-  }
-  
-  .viajes-creados tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .viajes-creados tbody tr:last-of-type {
-    border-bottom: 2px solid #ff443a;
-  }
-  
-  .viajes-creados tbody tr.active-row {
-    font-weight: bold;
-    color: #ff443a;
-  }
+  width: 100%; /* Asegura que la tabla ocupe todo el espacio disponible */
+  border-collapse: collapse; /* Estilo limpio para la tabla */
+}
+
+.viajes-creados th, .viajes-creados td {
+  border: 1px solid #ddd; /* Bordes entre las celdas */
+  padding: 8px; /* Espaciado interno */
+  text-align: center; /* Centrar el contenido */
+}
+
+.viajes-creados th {
+  background-color: #f4f4f4; /* Fondo diferente para el encabezado */
+  position: sticky; /* Mantiene el encabezado fijo al hacer scroll */
+  top: 0;
+  z-index: 1;
+}
+
   h3{
     text-align: center;
     font-size: 50px;
@@ -49,10 +30,15 @@
   }
 
   ion-button{
+    color: white;  
+    --ion-color-primary: #ff443a;
+    width: 200px; 
+    height: 100px;
+    font-size: 20px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
     display: flex;
-    justify-content: center;
-    --background:#ff443a;
-    width: 100px;
   }
   .butlistar{
     width: 200px;
@@ -67,17 +53,46 @@ h2{
   font-size: 50px;
 }
 .Contenedor{
-  text-align: center;
-  margin: auto;
+  max-width: 400px; /* Ajusta el tamaño del formulario para móviles */
+  margin: 0 auto; /* Centra el formulario horizontalmente */
+  padding: 16px; /* Espaciado interno */
+  background-color: #ffffff; /* Fondo blanco (opcional) */
+  border-radius: 10px; /* Bordes redondeados para un diseño más moderno */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar el contenedor */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Espaciado entre elementos */
 }
-ion-item{
-  width: 500px;
-  margin: auto;
+
+ion-item {
+  --inner-padding-top: 10px;
+  --inner-padding-bottom: 10px;
+  --background: #f9f9f9; /* Fondo claro para los campos */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-bottom: 8px; /* Espaciado adicional */
+}
+
+ion-label {
+  font-size: 14px; /* Tamaño de texto más pequeño */
+  color: #333333; /* Color de texto */
+}
+
+ion-input {
+  color: #000000; /* Color del texto ingresado */
+}
+
+.esp{
+  color: white;  
+  --ion-color-primary: #ff443a;
+  width: 100px; 
+  height: 50px;
   font-size: 20px;
-  border: 1px solid rgb(93, 83, 83);
-  border-radius: 10px;
-  margin-bottom: 5px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
 }
+
 
 
 

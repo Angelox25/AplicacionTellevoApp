@@ -11,67 +11,78 @@
 
   <ion-button (click)="listar()" class="butlistar">Mostrar Viajes</ion-button>
     
-    <div class="tablalistado">
-      <table class="viajes-creados">
-        <thead>
-          <tr>
-            <th>Destino</th>
-            <th>Capacidad</th>
-            <th>Costo por pasajero</th>
-            <th>Hora</th>
-           <th>Fecha</th>
-           <th>Eliminar Viaje</th>
-           <th>Modofocar Viaje</th>
-          </tr>                   
-        </thead>
-        <tbody>
-          <tr *ngFor="let viaje of viajes">
-            <td>{{viaje.destino}}</td>
-            <td>{{viaje.capacidad}}</td>
-            <td>{{viaje.costoPasajero}}</td>
-            <td>{{viaje.horaSalida}} </td>
-           <td>{{viaje.programacion}} </td>
-            <td><ion-button (click)="eliminar(viaje.identificador)">Eliminar</ion-button>
-            </td>
-            <td><ion-button (click)="buscar(viaje.identificador)">Ver viaje</ion-button>
-            </td>
-          </tr> 
-        </tbody>
-      </table>
-    </div>   
-
-
+  <div class="table-container">
+    <table class="viajes-creados">
+      <thead>
+        <tr>
+          <th>Destino</th>
+          <th>Capacidad</th>
+          <th>Costo por pasajero</th>
+          <th>Hora</th>
+          <th>Fecha</th>
+          <th>Eliminar Viaje</th>
+          <th>Modificar Viaje</th>
+        </tr>                   
+      </thead>
+      <tbody>
+        <tr *ngFor="let viaje of viajes">
+          <td>{{viaje.destino}}</td>
+          <td>{{viaje.capacidad}}</td>
+          <td>{{viaje.costoPasajero}}</td>
+          <td>{{viaje.horaSalida}} </td>
+          <td>{{viaje.programacion}} </td>
+          <td>
+            <ion-button (click)="eliminar(viaje.identificador)" class="esp">Eliminar</ion-button>
+          </td>
+          <td>
+            <ion-button (click)="buscar(viaje.identificador)" class="esp">Ver viaje</ion-button>
+          </td>
+        </tr> 
+      </tbody>
+    </table>
+  </div>
    
-    <div class="Contenedor">
-        <h2>Modificar Viajes</h2>     
-      <ion-item>
-        <ion-label position="stacked">Destino</ion-label>
-        <ion-input type="text" [(ngModel)]="destino"></ion-input>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label position="stacked">Capacidad</ion-label>
-        <ion-input type="number" [(ngModel)]="capacidad"></ion-input>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label position="stacked">Costo por Viajero</ion-label>
-        <ion-input type="number" [(ngModel)]="costoPasajero" disabled></ion-input>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label position="stacked">Hora de Salida</ion-label>
-        <ion-input type="time" [(ngModel)]="horaSalida"></ion-input>
-      </ion-item>
-    
-      <ion-item>
-        <ion-label position="stacked">Fecha de Programación</ion-label>
-        <ion-input type="date" [(ngModel)]="programacion"></ion-input>
-      </ion-item>
-    
-      <!-- Botón para buscar el viaje -->
-      <ion-button expand="block" (click)="modificar(currentId)">Guardar cambios</ion-button>
-    </div>
+  <div class="Contenedor">
+    <h2>Modificar Viajes</h2>
+  
+    <!-- Campo Destino -->
+    <ion-item>
+      <ion-label position="stacked">Destino</ion-label>
+      <ion-input type="text" [(ngModel)]="destino"></ion-input>
+    </ion-item>
+  
+    <!-- Campo Capacidad -->
+    <ion-item>
+      <ion-label position="stacked">Capacidad</ion-label>
+      <ion-input type="number" [(ngModel)]="capacidad"></ion-input>
+    </ion-item>
+  
+    <!-- Campo Costo por Viajero -->
+    <ion-item>
+      <ion-label position="stacked">Costo por Viajero</ion-label>
+      <ion-input type="number" [(ngModel)]="costoPasajero" disabled></ion-input>
+    </ion-item>
+  
+    <!-- Campo Hora de Salida -->
+    <ion-item>
+      <ion-label position="stacked">Hora de Salida</ion-label>
+      <ion-input type="time" [(ngModel)]="horaSalida"></ion-input>
+    </ion-item>
+  
+    <!-- Campo Fecha de Programación -->
+    <ion-item>
+      <ion-label position="stacked">Fecha de Programación</ion-label>
+      <ion-input type="date" [(ngModel)]="programacion"></ion-input>
+    </ion-item>
+  
+    <!-- Botón para guardar cambios -->
+    <ion-button expand="block" (click)="modificar(currentId)">Guardar cambios</ion-button>
+  </div>
+
+  <div>
+    <ion-button expand="block" (click)="volverChofer()">Volver</ion-button>
+  </div>
+  
 
 </ion-content>
 

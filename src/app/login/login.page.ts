@@ -51,7 +51,6 @@ export class LoginPage implements OnInit {
     private fb:FormBuilder, 
     private router:Router, 
     private animationCtrl:AnimationController,
-    private retornoService:UserService,
     private userService: UserService,
     private route: ActivatedRoute
   ) { 

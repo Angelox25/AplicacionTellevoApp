@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>buscarViaje</ion-title>
+    <ion-title>Viajes</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
   </div>
   
   <div class="tablalistado">
-    <table class="viajes-creados">
+    <table class="viajes-listados">
       <thead>
         <tr>
           <th>Destino</th>
@@ -19,7 +19,7 @@
           <th>Costo por pasajero</th>
           <th>Hora de salida</th>
           <th>Fecha de recorrido</th>
-          <th>Confirmar</th>
+          <th>Acción</th>
         </tr>
       </thead>
       <tbody>
@@ -30,12 +30,13 @@
           <td>{{viaje.horaSalida}}</td>
           <td>{{viaje.programacion}}</td>
           <td>
-            <ion-button (click)="buscar(viaje.identificador)">Mas Informacion</ion-button>
+            <ion-button (click)="buscar(viaje.identificador)" class="esp">Ver</ion-button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  
   
  <!-- Detalles del viaje seleccionado -->
  <div *ngIf="currentId" class="input-container">

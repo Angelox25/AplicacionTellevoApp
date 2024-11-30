@@ -15,7 +15,7 @@
 
   <!-- Inicio del login -->
   <div class="login">
-    <h1>INICIE SESIÓN</h1>
+    <h1>INICIO SESIÓN</h1>
     <!-- Formulario de inicio de sesión -->
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <!-- Campo de Nombre de Usuario -->
@@ -50,12 +50,4 @@
     </form>
   </div>
 
-  <!-- Información de depuración (opcional para desarrollo) -->
-  <h1> Variables de Grupo</h1>
-  <ion-item>
-    <ion-label> {{ loginForm.value | json }}</ion-label>
-  </ion-item>
-  <ion-item>
-    <ion-label> Es válido el formulario: {{ loginForm.valid }}</ion-label>
-  </ion-item>
 </ion-content>

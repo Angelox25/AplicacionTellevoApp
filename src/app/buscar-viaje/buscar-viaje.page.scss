@@ -1,42 +1,31 @@
-.viajes-creados {
-    border-collapse: collapse;
-    margin: auto;
-    margin-bottom: 10px;
-    font-size: 0.9em;
-    min-width: 400px;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .viajes-creados thead tr {
-    background-color: #ff443a;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-  }
-  
-  .viajes-creados th,
-  .viajes-creados td {
-    padding: 12px 15px;
-  }
-  
-  .viajes-creados tbody tr {
-    border-bottom: 1px solid #dddddd;
-  }
-  
-  .viajes-creados tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-  
-  .viajes-creados tbody tr:last-of-type {
-    border-bottom: 2px solid #ff443a;
-  }
-  
-  .viajes-creados tbody tr.active-row {
-    font-weight: bold;
-    color: #ff443a;
-  }
+.tablalistado {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  overflow-x: auto; /* Activa el desplazamiento horizontal si el contenido supera el ancho */
+  -webkit-overflow-scrolling: touch; /* Mejora la experiencia de scroll en dispositivos móviles */
+  margin: 16px 0; /* Espaciado vertical */
+}
+
+.viajes-listados {
+  width: 100%; /* Asegura que la tabla ocupe todo el ancho disponible */
+  min-width: 800px; /* Define un ancho mínimo para que sea deslizable si hay demasiadas columnas */
+  border-collapse: collapse; /* Elimina el espacio entre las celdas */
+}
+
+.viajes-listados th, .viajes-listados td {
+  border: 1px solid #ddd; /* Bordes para separar las celdas */
+  padding: 8px; /* Espaciado interno */
+  text-align: center; /* Centra el contenido */
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+}
+
+.viajes-listados th {
+  background-color: #f4f4f4; /* Fondo diferente para el encabezado */
+  font-weight: bold; /* Resaltar el texto del encabezado */
+}
+
+.viajes-listados tr:nth-child(even) {
+  background-color: #f9f9f9; /* Fondo alternativo para filas pares */
+}
   h3{
     text-align: center;
     font-size: 30px;
@@ -59,12 +48,25 @@
   }
 
   ion-button{
-    color: white;    
+    color: white;  
     --ion-color-primary: #ff443a;
     width: 200px; 
+    height: 100px;
+    font-size: 20px;
     margin: auto;
     margin-top: 30px;
-    margin-bottom: 20px; 
-  
+    margin-bottom: 20px;
+    display: flex;
   }
- 
+
+  .esp{
+    color: white;  
+    --ion-color-primary: #ff443a;
+    width: 100px; 
+    height: 50px;
+    font-size: 20px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+  }

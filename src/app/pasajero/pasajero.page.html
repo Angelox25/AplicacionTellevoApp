@@ -1,10 +1,9 @@
 <ion-menu contentId="main-content" side="start" menuId="main-menu">
   <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar>
       <ion-title>Menú Pasajero</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content>
     <ion-list>
       <ion-menu-toggle>
@@ -35,24 +34,24 @@
   </ion-content>
 </ion-menu>
 <ion-router-outlet id="main-content"></ion-router-outlet>
+
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
     <ion-title>Página Principal - Pasajero</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
+
+
 <ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-   
-      <ion-title size="large">chofer</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
   <div class="logo-container">
-    <img #logo3 src="assets/icon/icontellevo.png" alt="TeLlevoAPP Logo" class="logo3" />
+    <img #logo src="assets/icon/icontellevo.png" alt="TeLlevoAPP Logo" class="logo" />
     <p>Bajamos nuestra huella de carbono mientras nos ayudamos entre compañeros.</p>
 
   </div>
@@ -60,7 +59,6 @@
   <div class="verViaje">
     <ion-button (click)="irviajes()">Buscar viajes</ion-button> 
   </div>
-
 
 
 

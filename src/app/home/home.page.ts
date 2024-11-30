@@ -28,7 +28,9 @@ export class HomePage implements OnInit {
   private textAnimation!:Animation;
   username:any;
 
-  constructor(private router:Router,private animationCtrl:AnimationController,private activatedRoute: ActivatedRoute) {}
+  constructor(private router:Router,
+    private animationCtrl:AnimationController,
+    private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     const savedTheme = localStorage.getItem('dark-mode');
@@ -40,7 +42,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  ngAfterViewInit(){
+  async ngAfterViewInit(){
     if(this.logo2?.nativeElement && this.text?.nativeElement){
       this.logoAnimation = this.animationCtrl.create()
       .addElement(this.logo2.nativeElement)

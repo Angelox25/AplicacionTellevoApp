@@ -1,4 +1,3 @@
-  //Se añade estilos visuales a algunos elementos
 .error-mensaje{
     display: block;
     text-align: center;
@@ -11,23 +10,27 @@
       color: #0056b3;
       text-decoration: none;
     }
-  }
+}
 
-  .login-content {
+.login-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #f4f4f4; /* Fondo neutro para contraste, opcional */
   }
   
-  .login-container {
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     width: 80%;
     max-width: 400px;
-    text-align: center;
-    
   }
 
-  .logo-container{
+.logo-container{
     text-align: center;
     padding:50px;
     
@@ -37,24 +40,31 @@
   border-radius: 30px;
 }
 
+
 .modosc{
-  border-radius: 100px;
-  width: 50px; 
-  
+  max-width: 100%;             /* La imagen se ajusta al botón */
+  max-height: 100%;
+  border-radius: 50%; 
 }
 
 .custom-button{
-  --background: gray !important; 
-  width: 70px; 
-  height: 70px; 
-  padding: 0;
-  margin: 10px;
-  --border-radius: 50px;
+  background-color: white; /* Fondo transparente */
+  --background: transparent !important;
+  border: none;                 /* Sin bordes */
+  outline: none;                /* Sin contorno al enfocarse */
+  display: flex;                /* Centrar contenido */
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;           /* Forma circular */
+  width: 60px;                  /* Tamaño del botón */
+  height: 60px;
+  cursor: pointer;              /* Mano al pasar el cursor */
+  box-shadow: none;   
 }
+
 
 .button-solid{
   --background: red;
-
 
 }
 
@@ -64,62 +74,62 @@
 }
 
 .show-password-button {
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  margin-top: 15px;
+  position: absolute; /* Posición absoluta respecto al contenedor */
+  top: 50%; /* Centra el botón verticalmente */
+  left: 90%; /* Mueve el botón ligeramente hacia la derecha */
+  transform: translate(-50%, -50%); /* Ajusta para centrar según la nueva posición */
+  background: none; /* Sin fondo para mantenerlo limpio */
+  border: none; /* Sin borde */
+  font-size: 18px; /* Tamaño adecuado para el ícono */
+  cursor: pointer; /* Cursor de mano al pasar por encima */
+  z-index: 1; /* Coloca el botón encima del input */
+}
+
+ion-input {
+  width: 100%; /* Mantiene el tamaño completo del input */
+  height: 100%; /* Asegura que use toda la altura del grupo */
+  z-index: 0; /* Envía el input hacia atrás */
+  
 }
 
 .input-group {
-  display: flex;
-  align-items: center;
-margin: auto;  border-radius: 15px;
-  padding: 5px 10px;
-  width: 100%;
-
+  position: relative; /* Contenedor relativo para que el botón se posicione dentro */
+  width: 100%; /* Asegura que el grupo ocupe todo el ancho */
+  height: 40px; /* Ajusta la altura al input */
+}
+label, p, span {
+  color: #ffffff; /* Texto blanco */
 }
 
-// ion-label {
-//     margin-bottom: 15px;
-//     font-weight: bold; 
-//     font-size: 30px;
-// }
-
-.login{
+.login {
   border: 1px solid rgb(226, 85, 85);
-  width: 550px;
-  height: 590px;
+  width: 100%; /* Para ajustarlo al contenedor */
+  max-width: 400px; /* Limita el tamaño máximo */
+  height: auto; /* Ajusta la altura al contenido */
   background: rgb(221, 108, 108);
   color: white;
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(120, 100, 100, 0.75);
-  // background-size: cover;
-  background-position: center;
-  overflow: hidden;
+  padding: 20px; /* Añade espacio interno */
   margin: auto;
   margin-bottom: 20px;
-  
 }
 
-form{
-  display: block;
-  box-sizing: border-box;
-  padding: 40px;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: brightness(40%);
-  flex-direction: column;
+form {
   display: flex;
-  gap: 5px;
-
+  flex-direction: column;
+  gap: 15px; /* Espaciado entre elementos */
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-h1{
-  font-weight: normal;
+h1 {
   font-size: 24px;
-  text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
-  margin-bottom: 60px;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 ion-label{
@@ -151,7 +161,6 @@ ion-button{
   box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
   color: white;
   margin: 10px auto 10px
-
 
 }
 

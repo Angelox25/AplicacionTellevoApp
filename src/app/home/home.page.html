@@ -5,15 +5,16 @@
 <ion-content [fullscreen]="true">
   <div class="logo-container">
     <img #logo2 src="assets/icon/icontellevo.png" alt="TeLlevoAPP Logo" class="logo2" />
-
   </div>
+
+  <div #text class="animated">
+    <h1>Bienvenid&#64;, {{username}}</h1>
+    <h2>¿Qué deseas hacer hoy?</h2>
+  </div>
+
   
   <ion-card>
       
-    <ion-title #text> <strong>Bienvenid&#64;, {{username}}
-    <br>
-    ¿Qué deseas hacer hoy?</strong>
-    </ion-title>
     <ion-button (click)="Chofer()">Quiero llevar pasajeros</ion-button>
     <ion-button (click)="Pasajero()">Quiero tomar un viaje</ion-button> 
 

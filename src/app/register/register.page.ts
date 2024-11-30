@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,FormGroup,ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 //import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
@@ -25,7 +25,9 @@ export class RegisterPage implements OnInit {
     
   };
 
-  
+  private logoAnimation!:Animation;
+  @ViewChild('logo', {read:ElementRef}) logo?:ElementRef<HTMLImageElement>;
+
 
   isDarkMode = false;
   ngOnInit() {
@@ -40,7 +42,8 @@ export class RegisterPage implements OnInit {
     localStorage.setItem('dark-mode', JSON.stringify(this.isDarkMode));
   }
 
-  constructor(private fb: FormBuilder, private router: Router, private animationCtrl:AnimationController) { 
+  constructor(private fb: FormBuilder, private router: Router, 
+    private animationCtrl:AnimationController) { 
     this.registerForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       apellidos: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
@@ -49,6 +52,18 @@ export class RegisterPage implements OnInit {
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]*$')]]
     });
     
+  }
+  async ngAfterViewInit(){
+    if(this.logo?.nativeElement){
+      this.logoAnimation = this.animationCtrl.create()
+      .addElement(this.logo.nativeElement)
+      .duration(2500)
+      .fromTo('opacity','0','1');
+      this.logoAnimation.play()
+    }// final del if
+    else{
+      console.error('Los elementos no fueron encontrados')
+    }
   }
   volverInicio(){
     this.router.navigate(['login']);
