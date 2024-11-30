@@ -55,5 +55,9 @@ export class PasajeroPage  {
     this.router.navigate(['buscar-viaje']);
   }
 
+  openMenu() {
+    this.menuCtrl.open('main-menu'); // Identificador del menú (por defecto "first")
+  }
+
   
 }

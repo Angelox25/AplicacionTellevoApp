@@ -36,8 +36,12 @@
     
 }
 
-.logo{
-  border-radius: 30px;
+.logo {
+  max-width: 60%; /* Ajusta al 60% del ancho del contenedor */
+  height: auto; /* Mantiene la proporción */
+  margin: auto;
+  display: block;
+  border-radius: 15px;
 }
 
 
@@ -107,7 +111,6 @@ label, p, span {
   max-width: 400px; /* Limita el tamaño máximo */
   height: auto; /* Ajusta la altura al contenido */
   background: rgb(221, 108, 108);
-  color: white;
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(120, 100, 100, 0.75);
   padding: 20px; /* Añade espacio interno */
@@ -147,8 +150,14 @@ ion-input{
   border-radius: 10px;
   margin-bottom: 20px;
   color: black;
-  font-size: 20px;
+  font-size: 16px; /* Tamaño de texto adecuado para móviles */
   
+}
+ion-item {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  max-width: 350px; /* Tamaño máximo */
+  margin: 10px auto;
+  border-radius: 10px;
 }
 
 ion-button{
