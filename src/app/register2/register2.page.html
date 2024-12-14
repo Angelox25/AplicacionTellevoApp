@@ -14,11 +14,23 @@
 
     <h1>REGISTRAR</h1>
     <form (ngSubmit)="registrarUsuario()">
-      <label for="username">Nombre de usuario <span class="required">*</span></label>
+      <label for="username">Correo Institucional <span class="required">*</span></label>
       <div class="input-group">
-        <input type="text" [(ngModel)]="username" name="username" id="username" placeholder="Nombre usuario" class="input-field" required>
-        <span class="status-icon">&#9989;</span> <!-- Icono de verificación -->
+        <input 
+          type="text" 
+          [(ngModel)]="username" 
+          name="username" 
+          id="username" 
+          placeholder="Correo Institucional" 
+          class="input-field"
+          pattern="^[a-zA-Z0-9._%+-]+@(profesorduoc\.cl|duocuc\.cl)$" 
+          required>
       </div>
+      <ion-text color="danger" *ngIf="username && !username.match('^[a-zA-Z0-9._%+-]+@(profesorduoc\\.cl|duocuc\\.cl)$')">
+        El correo debe terminar en &#64;profesorduoc.cl o &#64;duocuc.cl.
+      </ion-text>
+      
+      
 
       <ion-label for="password">Contraseña <span class="required">*</span></ion-label>
       <div class="input-group">
@@ -32,7 +44,7 @@
         <button type="button" class="show-password-button" (click)="togglePasswordVisibility('repeatPassword')">👁️</button> <!-- Botón de mostrar contraseña -->
       </div>
 
-      <ion-button type="submit" class="register-button" (click)="mostrarMensajeRegistro2()">REGISTRAR</ion-button>
+      <ion-button type="submit" class="register-button">REGISTRAR</ion-button>
       <ion-button (click)="volverInicio()">Volver</ion-button>
     </form>
   </div>

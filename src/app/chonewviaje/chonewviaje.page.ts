@@ -156,55 +156,63 @@ export class ChonewviajePage implements OnInit {
     this.router.navigate(['chofer']);
   }
 
-  async mostrarMensajeViajeIniciado() {
-    const alert = await this.alertController.create({
-      header: 'Confirmación',
-      message: '¡Has creado un nuevo viaje!'
-    });
+  async agregarViaje() {
+    // Validación: Verificar que todos los campos estén llenos y válidos
+    if (
+      !this.destino.trim() || 
+      this.capacidad <= 0 || 
+      this.costoPasajero <= 0 || 
+      !this.horaSalida.trim() || 
+      !this.programacion.trim()
+    ) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Por favor, completa todos los campos antes de agregar el viaje.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return; // Detiene la ejecución si falta algún campo
+    }
   
-    await alert.present();
-    // setTimeout(() => {
-    //   this.router.navigate(['chofer']);
-    // }, 3000);
-  
-  }
-
-  async agregarViaje(){
-    
-    const  nuevoViaje ={
+    // Creación del objeto nuevo viaje
+    const nuevoViaje = {
       destino: this.destino,
       capacidad: this.capacidad,
       costoPasajero: this.costoPasajero,
-      horaSalida:this.horaSalida,
-      programacion:this.programacion,
-      identificador: Date.now().toString()  // Genera un identificador unico 
-    }
-      this.viajes.push(nuevoViaje);
-      
-      let resp = await  this.storageservice.agregarViaje('viajes',nuevoViaje )  
-      if(resp) {
-      //alert('Persona Agregada');
-      await this.listar();
+      horaSalida: this.horaSalida,
+      programacion: this.programacion,
+      identificador: Date.now().toString() // Genera un identificador único
+    };
+  
+    // Agregar el viaje al almacenamiento
+    this.viajes.push(nuevoViaje);
+    let resp = await this.storageservice.agregarViaje('viajes', nuevoViaje);
+  
+    if (resp) {
+      await this.listar(); // Actualiza la lista de viajes
       const alert = await this.alertController.create({
         header: 'Confirmación',
-        message: '¡Has creado un nuevo viaje!'
+        message: `¡Has creado un nuevo viaje! Recuerda que debes estar a las ${this.horaSalida} Horas en el Instituto DuocUC Puente Alto.`,
+        buttons: ['OK']
       });
-    
       await alert.present();
-
-      
-    }else{
-      alert('no se pudo agregar el viaje');
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'No se pudo agregar el viaje. Inténtalo de nuevo.',
+        buttons: ['OK']
+      });
+      await alert.present();
     }
-    
-    //Limpiamos los campos despues de Agregar
-    this.destino="";
-    this.capacidad=0;
-    this.costoPasajero=0;
-    this.horaSalida="";
-    this.programacion="";
-    
+  
+    // Limpiar los campos después de agregar el viaje
+    this.destino = "";
+    this.capacidad = 0;
+    this.costoPasajero = 0;
+    this.horaSalida = "";
+    this.programacion = "";
   }
+  
   
 //listar viajes
 async listar(){

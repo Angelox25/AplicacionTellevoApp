@@ -3,6 +3,7 @@ import { IonicModule,AnimationController, Animation } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../user.service'; // Importa el UserService
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,8 @@ export class HomePage implements OnInit {
 
   constructor(private router:Router,
     private animationCtrl:AnimationController,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService) {}
 
   ngOnInit(): void {
     const savedTheme = localStorage.getItem('dark-mode');
@@ -69,7 +71,11 @@ export class HomePage implements OnInit {
     this.router.navigate(['pasajero']);
   }
   cerrarSesion(){
-    this.router.navigate(['login']);
+    this.router.navigateByUrl('/login', { replaceUrl: true });
+
   }
+
+
+  
 
 }

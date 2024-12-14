@@ -23,20 +23,65 @@ export class Register2Page implements OnInit {
   constructor(private router:Router,private storageService: StorageService,private alertController: AlertController) { }
 
   async registrarUsuario() {
-    if (this.password !== this.repeatPassword) {
-      console.log('Las contraseñas no coinciden');
+    // Validar que todos los campos estén llenos
+    if (!this.username.trim() || !this.password.trim() || !this.repeatPassword.trim()) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Todos los campos son obligatorios. Por favor, complétalos antes de registrar.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return; // Detiene la ejecución si algún campo está vacío
+    }
+  
+    // Validar el formato del correo electrónico
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@(profesorduoc\.cl|duocuc\.cl)$/;
+    if (!emailRegex.test(this.username)) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'El correo electrónico debe terminar en @profesorduoc.cl o @duocuc.cl.',
+        buttons: ['OK']
+      });
+      await alert.present();
       return;
     }
-
+  
+    // Validar que las contraseñas coincidan
+    if (this.password !== this.repeatPassword) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Las contraseñas no coinciden.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+  
+    // Guardar usuario
     const userData = {
       username: this.username,
-      password: this.password // Considera encriptar la contraseña para mayor seguridad
+      password: this.password // Nota: En producción, encripta la contraseña
     };
-
+  
     await this.storageService.guardarUsuario('usuarioActual', userData);
     console.log('Usuario registrado correctamente');
-    // Redirigir al usuario o mostrar un mensaje de éxito
+  
+    // Mostrar mensaje de éxito
+    const successAlert = await this.alertController.create({
+      header: 'Éxito',
+      message: '¡Usuario creado correctamente!',
+      buttons: ['OK']
+    });
+    await successAlert.present();
+  
+    // Limpiar los campos después del registro
+    this.username = '';
+    this.password = '';
+    this.repeatPassword = '';
   }
+  
+  
+  
 
   //MODO  OSCURO
   isDarkMode = false;
@@ -68,22 +113,9 @@ export class Register2Page implements OnInit {
   
 
   volverInicio(){
-    this.router.navigate(['register']);
+    this.router.navigate(['login']);
   }
-//Revisar metodo
-  async mostrarMensajeRegistro2() {
-    const alert = await this.alertController.create({
-      header: 'Confirmacion',
-      message: 'Usuario creado correctamente',
-      buttons: ['OK']
-    });
-  
-    await alert.present();
-    setTimeout(() => {
-      this.router.navigate(['login']);
-    }, 3000);
-  
-  }
+
 
 
 

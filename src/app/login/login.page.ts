@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,FormGroup,ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { IonicModule,AnimationController, Animation  } from '@ionic/angular';
+import { IonicModule,AnimationController, Animation   } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { AlertController } from '@ionic/angular'; // Importa AlertController
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginPage implements OnInit {
   
   isDarkMode = false;
   ngOnInit() {
+    // Detectar tema oscuro
     const savedTheme = localStorage.getItem('dark-mode');
     this.isDarkMode = savedTheme ? JSON.parse(savedTheme) : false;
     document.body.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
@@ -33,6 +35,18 @@ export class LoginPage implements OnInit {
       const username = params['username'];
       console.log('Username:', username);
     });
+
+    // Limpia el historial del navegador al cargar la página
+    history.pushState(null, '', location.href);
+    history.replaceState(null, '', location.href);
+    window.onpopstate = () => {
+      history.pushState(null, '', location.href); // Evita volver atrás
+    };
+
+    console.log('Historial limpiado y botón atrás bloqueado');
+    this.router.navigateByUrl('/login', { replaceUrl: true });
+
+
   }
 
   toggleDarkMode() {
@@ -52,29 +66,30 @@ export class LoginPage implements OnInit {
     private router:Router, 
     private animationCtrl:AnimationController,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertController: AlertController
   ) { 
 
-  this.loginForm=this.fb.group({
+    this.loginForm = this.fb.group({
       username: [
         '',
         [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(8),
-        Validators.pattern('^[a-zA-Z0-9]*$')
+          Validators.required,
+          Validators.maxLength(40),
+          Validators.pattern('^[a-zA-Z0-9._%+-]+@(profesorduoc\\.cl|duocuc\\.cl)$') // Solo correos válidos
         ]
       ],
-        password: [
+      password: [
         '',
         [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(4),
-        Validators.pattern('^[0-9]*$')
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(4),
+          Validators.pattern('^[0-9]*$') // Solo números para contraseña
         ]
       ]
-  }) ;
+    });
+    
 
   }// final del constructor
 
@@ -82,20 +97,28 @@ export class LoginPage implements OnInit {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
       const loginSuccessful = await this.userService.iniciarSesion(username, password);
-
+  
       if (loginSuccessful) {
         console.log('Inicio de sesión exitoso');
-        
         this.router.navigate(['home'], { queryParams: { username: username } });
-
-        // Redirigir a la página principal o dashboard
       } else {
         console.log('Error en la autenticación: Credenciales incorrectas');
-        // Mostrar un mensaje de error al usuario
+        this.mostrarAlertaError(); // Muestra la alerta
       }
     } else {
       console.log('Formulario no válido');
     }
+  }
+  
+  // Método para mostrar la alerta de error
+  async mostrarAlertaError() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'Credenciales incorrectas. Por favor, inténtalo de nuevo.',
+      buttons: ['Aceptar']
+    });
+  
+    await alert.present();
   }
 
 

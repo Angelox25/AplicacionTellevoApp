@@ -29,16 +29,18 @@
       </ion-text>
       <br>
       <label for="rut">Rut <span class="required">*</span></label>
-      <ion-input formControlName="rut" type="text" id="rut" placeholder="Ingrese su rut" maxlength="10" class="input-field"></ion-input>
+      <ion-input 
+        formControlName="rut" 
+        type="text" 
+        id="rut" 
+        placeholder="19.521.126-1" 
+        maxlength="12" 
+        class="input-field">
+      </ion-input>
       <ion-text color="danger" *ngIf="registerForm.get('rut')?.invalid && registerForm.get('rut')?.touched">
-        Rut es requerido y debe tener un formato válido.
+        Rut es requerido y debe tener un formato válido (ej: 19.521.126-1).
       </ion-text>
-      <br>
-      <label for="correo">Correo institucional <span class="required">*</span></label>
-      <ion-input formControlName="correo" type="email" id="correo" placeholder="correo@duocuc.cl" class="input-field"></ion-input>
-      <ion-text color="danger" *ngIf="registerForm.get('correo')?.invalid && registerForm.get('correo')?.touched">
-        Correo es requerido y debe ser un correo válido.
-      </ion-text>
+      
       <br>
       <label for="telefono">Teléfono <span class="required">*</span></label>
       <ion-input formControlName="telefono" type="tel" id="telefono" placeholder="569 XXXX XXXX" maxlength="11" class="input-field"></ion-input>

@@ -39,6 +39,8 @@ export class BuscarViajePage implements OnInit {
   async  ngOnInit() {
     this.viajes = await this.storageservice.obtenerDatos('viajes') || [];
     this.inicializarMapa();
+    this.viajesFiltrados = [...this.viajes]; // Inicializa la lista filtrada
+
   }
   
 // Método para inicializar el mapa de Google Maps
@@ -121,20 +123,25 @@ configurarDireccion() {
     });
   }
 
+  capacidadMaxima: number = 0; // Capacidad original del viaje
+
   //Buscar datos
-async buscar(id:any){
-  let registroEncontrado = await this.storageservice.obtenerDato('viajes',id)
-  if (registroEncontrado){
-    this.destino = registroEncontrado.destino;
-    this.capacidad = registroEncontrado.capacidad;
-    this.costoPasajero = registroEncontrado.costoPasajero;
-    this.horaSalida = registroEncontrado.horaSalida;
-    this.programacion = registroEncontrado.programacion;
-    this.currentId = registroEncontrado.identificador;
-  } else {
-    console.log("Registro no encontrado");
+  async buscar(id: any) {
+    let registroEncontrado = await this.storageservice.obtenerDato('viajes', id);
+    if (registroEncontrado) {
+      this.destino = registroEncontrado.destino;
+      this.capacidad = registroEncontrado.capacidad;
+      this.costoPasajero = registroEncontrado.costoPasajero;
+      this.horaSalida = registroEncontrado.horaSalida;
+      this.programacion = registroEncontrado.programacion;
+      this.currentId = registroEncontrado.identificador;
+      this.capacidadMaxima = registroEncontrado.capacidad; // Guarda la capacidad original
+    } else {
+      console.log("Registro no encontrado");
+    }
   }
-}
+  
+
 async listar(){
   this.viajes = await this.storageservice.obtenerDatos('viajes') || [];
 }
@@ -168,13 +175,97 @@ async reservarAsientos() {
   // Mostrar mensaje de confirmación
   const alert = await this.alertController.create({
     header: 'Reserva Exitosa',
-    message: `Has reservado ${this.asientosReservados} asientos. Capacidad restante: ${nuevaCapacidad}`,
+    message: `Has reservado ${this.asientosReservados} asientos. El valor que debes cancelar es ${this.asientosReservados*this.costoPasajero}`,
     buttons: ['OK']
   });
+  
   await alert.present();
   // Limpiar el campo de asientos reservados después de reservar
   this.asientosReservados = 1;
 }
+
+
+//13/12/2024
+
+
+async cancelarReserva() {
+  if (this.asientosReservados <= 0) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'No hay asientos reservados para cancelar.',
+      buttons: ['OK']
+    });
+    await alert.present();
+    return;
+  }
+
+  // Verificar que la nueva capacidad no exceda la capacidad máxima
+  const nuevaCapacidad = Math.min(this.capacidad + this.asientosReservados, this.capacidadMaxima);
+
+  if (nuevaCapacidad > this.capacidadMaxima) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'La capacidad no puede superar el máximo de asientos disponibles.',
+      buttons: ['OK']
+    });
+    await alert.present();
+    return;
+  }
+
+  // Actualizar el viaje con la nueva capacidad
+  const viajeModificado: Viaje = {
+    destino: this.destino,
+    capacidad: nuevaCapacidad,
+    costoPasajero: this.costoPasajero,
+    horaSalida: this.horaSalida,
+    programacion: this.programacion,
+    identificador: this.currentId
+  };
+
+  await this.storageservice.actualizar('viajes', viajeModificado);
+  await this.listar(); // Refrescar la lista de viajes
+
+  // Mostrar mensaje de confirmación
+  const alert = await this.alertController.create({
+    header: 'Reserva Cancelada',
+    message: `Has cancelado la reserva de ${this.asientosReservados} asientos.`,
+    buttons: ['OK']
+  });
+
+  await alert.present();
+
+  // Restablecer la cantidad de asientos reservados
+  this.asientosReservados = 1;
+
+  // Actualizar la capacidad local
+  this.capacidad = nuevaCapacidad;
+}
+
+
+//filtro
+// Variables para los filtros
+filtroDestino: string = "";
+filtroCapacidad: number = 0;
+
+// Lista filtrada
+viajesFiltrados: Viaje[] = [];
+
+// Método para aplicar el filtro
+aplicarFiltro() {
+  this.viajesFiltrados = this.viajes.filter((viaje) => {
+    const coincideDestino = this.filtroDestino
+      ? viaje.destino.toLowerCase().includes(this.filtroDestino.toLowerCase())
+      : true;
+
+    const coincideCapacidad = this.filtroCapacidad
+      ? viaje.capacidad >= this.filtroCapacidad
+      : true;
+
+    return coincideDestino && coincideCapacidad;
+  });
+}
+
+
 
 }
 

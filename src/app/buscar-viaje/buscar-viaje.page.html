@@ -6,36 +6,52 @@
 
 <ion-content [fullscreen]="true">
 
-  <div>
-    <ion-button (click)="listar()">Mostrar Viajes</ion-button>
-  </div>
+
+<!-- Filtros de búsqueda -->
+<div class="filtros-container">
+  <ion-item>
+    <ion-label position="stacked">Filtrar por Destino</ion-label>
+    <ion-input type="text" [(ngModel)]="filtroDestino" placeholder="Ej: Santiago" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Capacidad Mínima</ion-label>
+    <ion-input type="number" [(ngModel)]="filtroCapacidad" placeholder="Ej: 1 a 4" max="4" min="1"></ion-input>
+  </ion-item>
+</div>
+
+<!-- Botón para aplicar filtro -->
+<ion-button expand="block" (click)="aplicarFiltro()">Aplicar Filtro</ion-button>
+
   
-  <div class="tablalistado">
-    <table class="viajes-listados">
-      <thead>
-        <tr>
-          <th>Destino</th>
-          <th>Capacidad</th>
-          <th>Costo por pasajero</th>
-          <th>Hora de salida</th>
-          <th>Fecha de recorrido</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let viaje of viajes">
-          <td>{{viaje.destino}}</td>
-          <td>{{viaje.capacidad}}</td>
-          <td>${{viaje.costoPasajero}}</td>
-          <td>{{viaje.horaSalida}}</td>
-          <td>{{viaje.programacion}}</td>
-          <td>
-            <ion-button (click)="buscar(viaje.identificador)" class="esp">Ver</ion-button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  
+<!-- Tabla de Viajes Filtrados -->
+<div class="tablalistado">
+  <table class="viajes-listados">
+    <thead>
+      <tr>
+        <th>Destino</th>
+        <th>Capacidad</th>
+        <th>Costo por pasajero</th>
+        <th>Hora de salida</th>
+        <th>Fecha de recorrido</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let viaje of viajesFiltrados">
+        <td>{{viaje.destino}}</td>
+        <td>{{viaje.capacidad}}</td>
+        <td>${{viaje.costoPasajero}}</td>
+        <td>{{viaje.horaSalida}}</td>
+        <td>{{viaje.programacion}}</td>
+        <td>
+          <ion-button (click)="buscar(viaje.identificador)" class="esp">Ver</ion-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
   
   
  <!-- Detalles del viaje seleccionado -->
@@ -91,16 +107,20 @@
   <ion-button expand="block" (click)="mostrarRuta()">Mostrar Ruta</ion-button>
 </div>
 
-  <!-- Información de la reserva -->
-  <div *ngIf="asientosReservados > 0" class="reserva-detalles">
-    <h2>Detalles de la Reserva</h2>
-    <p>Asientos reservados: {{ asientosReservados }}</p>
-    <p>Total a pagar: ${{ costoPasajero * asientosReservados }}</p>
-  </div>
+
 
 <!-- Contenedor del mapa -->
  <div class="map-container">
 <div id="map" style="height: 400px;" ></div>
  </div>
+
+
+ <!-- Botón para cancelar la reserva -->
+<ion-button expand="block" color="danger" (click)="cancelarReserva()">Cancelar Reserva</ion-button>
+
+
+
+
+ 
 
 </ion-content>

@@ -47,10 +47,9 @@ export class RegisterPage implements OnInit {
     this.registerForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       apellidos: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      rut: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9.-]*$')]],
-      correo: ['', [Validators.required, Validators.email]],
+      rut: ['', [Validators.required, Validators.pattern(/^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$/)]],
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]*$')]]
-    });
+        });
     
   }
   async ngAfterViewInit(){
@@ -74,12 +73,11 @@ export class RegisterPage implements OnInit {
   }
 
   isFormValid(): boolean {
-    const { nombre, apellidos, rut, correo, telefono } = this.formData;
+    const { nombre, apellidos, rut, telefono } = this.formData;
     return (
       nombre.trim() !== '' &&
       apellidos.trim() !== '' &&
       rut.trim() !== '' &&
-      correo.trim() !== '' &&
       telefono.trim() !== ''
     );
   }

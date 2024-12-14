@@ -19,14 +19,27 @@
     <!-- Formulario de inicio de sesión -->
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <!-- Campo de Nombre de Usuario -->
+
       <ion-item>
-        <ion-input formControlName="username" placeholder="Ingrese usuario" maxlength="8"></ion-input>
+        <ion-input 
+          formControlName="username" 
+          placeholder="Ingrese Correo Institucional" 
+          maxlength="40">
+        </ion-input>
       </ion-item>
+
       <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error-message">
         <span *ngIf="loginForm.get('username')?.errors?.['required']" style="color: red;">
-          Debe ingresar usuario
+          El correo es obligatorio.
+        </span>
+        <span *ngIf="loginForm.get('username')?.errors?.['maxlength']" style="color: red;">
+          El correo no puede superar los 40 caracteres.
+        </span>
+        <span *ngIf="loginForm.get('username')?.errors?.['pattern']" style="color: red;">
+          El correo debe terminar en &#64;profesorduoc.cl o &#64;duocuc.cl.
         </span>
       </div>
+      
 
       <!-- Campo de contraseña -->
       <ion-item>
